@@ -25,4 +25,5 @@ class App extends Component {
   }
 }
 
+//fix bad merge
 export default App;
