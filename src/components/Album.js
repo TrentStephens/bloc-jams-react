@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import albumData from './../data/albums';
+import { Link } from 'react-router-dom';
 
 class Album extends Component {
 	constructor(props) {
 		super(props);
-	
+
 	const album = albumData.find( album => {
 		return album.slug === this.props.match.params.slug
 	});
-		
+
 	this.state = {
 		album: album
 	};
 	}
-	
+
 	render(){
 		return (
 			<section className="album">
@@ -25,17 +26,24 @@ class Album extends Component {
 					<div id="release-info">{this.state.album.releaseInfo}</div>
 				</div>
 			</section>
- <table id="song-list">
-           <colgroup>
-             <col id="song-number-column" />
-             <col id="song-title-column" />
-             <col id="song-duration-column" />
-           </colgroup>  
-           <tbody>
-           </tbody>
-         </table>
+
+			<table id="song-list">
+				<colgroup>
+					<col id="song-number-column" />
+					<col id="song-title-column" />
+					<col id="song-duration-column" />
+				</colgroup>
+
+				<tbody class='songList'>
+					{this.state.album.songs.map ( ( song, index) =>
+							<tr>{index + 1} - {song.title} - {song.duration} seconds</tr>
+						)
+					}
+				</tbody>
+
+			</table>
 		</section>
-			);
+		);
 	}
 }
 
