@@ -13,7 +13,8 @@ class Album extends Component {
 			this.state = {
 				album: album,
 				currentSong: album.songs[0],
-				isPlaying: false
+				isPlaying: false,
+				isMouseInside:false
 		};
 
 	this.audioElement = document.createElement('audio');
@@ -43,10 +44,20 @@ class Album extends Component {
 			if (!isSameSong) {this.setSong(song);}
 			this.play();
 		}
-}
+	}
+
+	mouseEnter = () => {
+  	this.setState({ isMouseInside: true })
+	};
+
+	mouseLeave = () => {
+  	this.setState({ isMouseInside: false })
+	};
 
 	render(){
 		return (
+
+
 			<section className="album">
 				<section id="album-info">
 				<img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
@@ -66,8 +77,12 @@ class Album extends Component {
 
 				<tbody class='songList'>
 					{this.state.album.songs.map ( ( song, index) =>
-							<tr className="song" key={index} onClick={() => this.handleSongClick(song)}>
-							{index + 1} - {song.title} - {song.duration} seconds
+							<tr className="song"
+								key={index}
+								onClick={() => this.handleSongClick(song)}
+								onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+								{this.state.isMouseInside ? <span className="ion-md-play"></span> : null}
+								{index + 1} - {song.title} - {song.duration} seconds 
 							</tr>
 						)
 					}
