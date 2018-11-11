@@ -54,6 +54,17 @@ class Album extends Component {
   	this.setState({ isMouseInside: false })
 	};
 
+	handleSongIcon(song, index) {
+		if (index === index){
+			return <span>{index + 1}</span>;
+		} else {
+			if (this.state.currentSong === song){
+            return <span className="ion-md-play"></span>;
+        }
+		}
+
+	}
+
 	render(){
 		return (
 
@@ -81,8 +92,7 @@ class Album extends Component {
 								key={index}
 								onClick={() => this.handleSongClick(song)}
 								onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
-								{this.state.isMouseInside ? <span className="ion-md-play"></span> : null}
-								{index + 1} - {song.title} - {song.duration} seconds 
+								{this.handleSongIcon(song, index)} - {song.title} - {song.duration} seconds
 							</tr>
 						)
 					}
