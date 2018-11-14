@@ -12,7 +12,7 @@ class Album extends Component {
 
 			this.state = {
 				album: album,
-				currentSong: album.songs[0],
+				currentSong: {},
 				isPlaying: false,
 				isMouseInside:false
 		};
@@ -55,7 +55,7 @@ class Album extends Component {
 	};
 
 	handleSongIcon(song, index) {
-		if (index === index){
+		if (this.state.isPlaying === false){
 			return <span>{index + 1}</span>;
 		} else {
 			if (this.state.currentSong === song){
@@ -91,8 +91,11 @@ class Album extends Component {
 							<tr className="song"
 								key={index}
 								onClick={() => this.handleSongClick(song)}
-								onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
-								{this.handleSongIcon(song, index)} - {song.title} - {song.duration} seconds
+								onMouseEnter={() => this.mouseEnter} onMouseLeave={this.mouseLeave}>
+
+									<td>{(this.state.isPlaying === true && this.state.currentSong === song) ? (<span className="ion-md-pause"></span>) : ((this.state.isPlaying !== true && this.state.currentSong === song) ? (<span className="ion-md-play"></span>) :  <span>{index+1}</span>)}</td>
+									<td>{song.title}</td>
+									<td>{song.duration} seconds</td>
 							</tr>
 						)
 					}
