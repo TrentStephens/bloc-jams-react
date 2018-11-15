@@ -46,7 +46,7 @@ class Album extends Component {
 		}
 	}
 
-	mouseEnter = () => {
+	mouseEnter = (index) => {
 		this.setState({ isMouseInside: index })
 	};
 
@@ -81,9 +81,9 @@ class Album extends Component {
 							<tr className="song"
 								key={index}
 								onClick={() => this.handleSongClick(song)}
-								onMouseEnter={this.mouseEnter(index)} onMouseLeave={this.mouseLeave}>
+								onMouseEnter={() => this.mouseEnter(index)} onMouseLeave={this.mouseLeave}>
 									<td id="songTableRow">
-										{(this.state.isMouseInside === true) ? (<span className="ion-md-play"></span>) :
+										{(this.state.isMouseInside === index) ? (<span className="ion-md-play"></span>) :
 										(this.state.isPlaying === true && this.state.currentSong === song) ? (<span className="ion-md-pause"></span>) :
 										((this.state.isPlaying !== true && this.state.currentSong === song) ? (<span className="ion-md-play"></span>) :
 										<span>{index+1}</span>)}
