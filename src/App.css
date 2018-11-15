@@ -30,8 +30,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-#songTableRow :hover {
-  display <span className="ion-md-play"></span>
-}
