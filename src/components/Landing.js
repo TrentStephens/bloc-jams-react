@@ -3,8 +3,7 @@ import React from 'react';
 const Landing = () => (
 	<section className="landing">
 		<h1 className="hero-title"> Turn the music up! </h1>
-		<span className="ion-md-play"></span>
-		<span className="ion-md-pause"></span>
+		<div><img className="home-image" src="https://media.giphy.com/media/4oMoIbIQrvCjm/giphy.gif" alt="Bart Dance" /></div>
 		<section className="selling-points">
 			<div className="point">
 				<h2 className="point-title"> Choose your music </h2>
